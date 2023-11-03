@@ -1,0 +1,38 @@
+ reading data from a CSV file and inserting or updating records in a MySQL database. Here's a step-by-step description of what the code does:
+
+1)Import Statements:
+      Import necessary classes and methods, including JDBC-related classes for database connection and file reading.
+2)Database Connection Setup:
+      Define the JDBC URL, username, and password for connecting to a MySQL database. Adjust these values to match your database configuration.
+3)CSV File Path and Batch Size:
+      Specify the path to the CSV file that contains the data you want to insert/update in the database.
+      Set the batch size, which determines how many records are inserted or updated at once.
+4)Database Connection Initialization:
+      Initialize a Connection object and establish a connection to the database using the provided JDBC URL, username, and password.
+5)SQL Statements Preparation:
+      Prepare SQL statements for inserting and updating records in the database.
+      The sql statement is used for inserting new records, and the updateSql statement is used for updating existing records.
+6)Read CSV File:
+      Create a BufferedReader to read the CSV file line by line.
+      Skip the first line (usually the header) using lineReader.readLine().
+7)Process CSV Data:
+      Iterate through each line of the CSV file.
+      Split the line into an array of data using a comma (,) as the delimiter.
+      Extract the values for 'id', 'name', 'quantity', and 'cost' from the split data.
+8)Check If Record Exists:
+      Utilize the recordExists method to check if a record with the same 'id' already exists in the database.
+9)Prepare Statements for Batch Execution:
+      Depending on whether the record exists, prepare either an insert or update statement for batch execution.
+    Batch Execution:
+      Add the prepared statements to the batch.
+      Periodically execute batches of statements based on the defined batchSize to improve efficiency.
+10)Close Resources:
+      After processing all records, execute the final batches and close the BufferedReader and prepared statements.
+    Commit and Close Connection:
+        Commit the transaction to persist the changes in the database.
+        Close the database connection to release resources.
+11)Exception Handling:
+    Catch and handle any exceptions that may occur during the process.
+12)Output Success Message:
+      If the data insertion/updating is successful, print a success message.
+Note: You need to ensure that your MySQL database is set up and that the table itemslist with the appropriate columns (id, name, quantity, and cost) exists before running this code. Additionally, make sure that the MySQL JDBC driver is included in your project's classpath.
